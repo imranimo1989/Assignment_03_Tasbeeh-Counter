@@ -13,7 +13,7 @@ class CounterApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.cyan,
+        primarySwatch: Colors.green,
       ),
       home: CounterDash(),
     );
@@ -28,23 +28,23 @@ class CounterDash extends StatefulWidget {
 }
 
 class _CounterDashState extends State<CounterDash> {
+  int count1 = 0;
+  int count2 = 0;
+  int count3 = 0;
 
-  int count1=0;
-  int count2=0;
-  int count3=0;
+  var tasbihName = "Tasbeeh Counter";
 
-  var tasbihName="Tasbeeh Counter";
 //var  counter=0;
-  void tasbeehCounter({int? count1,int? count2, int? count3}){
+  void tasbeehCounter({int? count1, int? count2, int? count3}) {
     count1;
-   count2;
-   count3;
+    count2;
+    count3;
   }
 
-  int result =0;
-  int subhanaAllah=0;
-  int alhamdulillah=0;
-  int laIlahaIllallah=0;
+  int result = 0;
+  int subhanaAllah = 0;
+  int alhamdulillah = 0;
+  int laIlahaIllallah = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -54,216 +54,231 @@ class _CounterDashState extends State<CounterDash> {
       ),
       drawer: Drawer(),
       body: Column(
+crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(
-              height: 150,
-              width: double.infinity,
-              child: Image.network(
-                'https://static.vecteezy.com/system/resources/previews/009/386/520/non_2x/bismillah-arabic-calligraphy-free-vector.jpg',
-                fit: BoxFit.cover,
-              )),
           Container(
-            height: 80,
+              height: 120,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  fit: BoxFit.fitWidth,
+                  image: NetworkImage('https://t3.ftcdn.net/jpg/03/01/93/98/360_F_301939801_ENSHErMa33QF9Z0bJOJ8ZlNsVOJ3dy5h.jpg')
+                )
+              ),
+              child:Container(
+                decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                        colors: [Colors.black38,Colors.black],
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight
+                    )
+                ),
+                child: Row(
+                  children: [
+                    Expanded(
+                      flex: 3,
+                      child: Padding(
+                          padding: const EdgeInsets.all(0),
+                          child: Text(tasbihName, style: TextStyle(fontSize: 40,fontWeight: FontWeight.normal,color: Colors.lightGreenAccent,fontFamily: 'ds-digi'),textAlign: TextAlign.right,)),
+                    ),
+
+                    //Result Display
+                    Expanded(
+                      flex: 1,
+                      child: Padding(
+                          padding: const EdgeInsets.only(right: 20),
+                          child: Text(result.toString(),style: TextStyle(fontSize: 50,fontWeight: FontWeight.normal,color: Colors.lightGreenAccent,fontFamily: 'ds-digi'),textAlign: TextAlign.right,)),
+                    ),
+                  ],
+                ),
+              ), ),
+          SizedBox(height: 10,),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(8, 10, 0, 2),
+            child: Text('Counting History',style: TextStyle(fontSize: 15,fontWeight: FontWeight.normal,color: Colors.black54,),textAlign: TextAlign.start,)
+          ),
+
+          Row(
+            children: [
+              //SubhanaAllah
+              Expanded(
+                child: Card(
+                  child: Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: Column(
+                      children: [
+                        Text(
+                          subhanaAllah.toString(),
+                          style: TextStyle(fontSize: 20,fontWeight: FontWeight.normal,color: Colors.orange,fontFamily: 'ds-digi'),
+                          textAlign: TextAlign.center,
+                        ),
+                        Text(
+                          //SubhanaAllah
+                          'SUBHANALLAH',
+                          style: TextStyle(fontSize: 15,fontWeight: FontWeight.normal,color: Colors.orange,),
+                          textAlign: TextAlign.center,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+
+              //Alhamdulillah
+              Expanded(
+                child: Card(
+                  child: Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: Column(
+                      children: [
+                        Text(
+                          alhamdulillah.toString(),
+                          style: TextStyle(fontSize: 20,fontWeight: FontWeight.normal,color: Colors.blue,fontFamily: 'ds-digi'),
+                          textAlign: TextAlign.center,
+                        ),
+                        Text(
+                          //SubhanaAllah
+                          'ALHAMDULILLAH',
+                          style: TextStyle(fontSize: 15,fontWeight: FontWeight.normal,color: Colors.blue,),
+                          textAlign: TextAlign.center,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+
+              //La Ilaha Illah
+              Expanded(
+                child: Card(
+                  child: Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: Column(
+                      children: [
+                        Text(
+                          subhanaAllah.toString(),
+                          style: TextStyle(fontSize: 20,fontWeight: FontWeight.normal,color: Colors.green,fontFamily: 'ds-digi'),
+                          textAlign: TextAlign.center,
+                        ),
+                        Text(
+                          //SubhanaAllah
+                          'SUBHANALLAH',
+                          style: TextStyle(fontSize: 15,fontWeight: FontWeight.normal,color: Colors.green,),
+                          textAlign: TextAlign.center,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              )
+            ],
+          ),
+
+
+          SizedBox(
+            height: 10,
+          ),
+          //SubhanaAllah
+          SizedBox(
             width: double.infinity,
-            decoration: BoxDecoration(
-              color: Color.fromRGBO(153, 254, 153, 0.8),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ElevatedButton.icon(
+                  onPressed: () {
+                    tasbihName = "SUBHANALLAH";
+
+                    setState(() {
+                      count1++;
+                      result = count1;
+                    });
+                    alhamdulillah = count2;
+                    laIlahaIllallah = count3;
+                  },
+                  style: ElevatedButton.styleFrom(
+                      padding: EdgeInsets.all(20), backgroundColor: Colors.orange),
+                  icon: Icon(Icons.add),
+                  label: Text('SUBHANALLAH',
+                    style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color: Colors.white,),
+                  )
+              ),
             ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                SizedBox(width: 20,),
-                Expanded(
-                  flex:2,
-                  child: Column(
-                    mainAxisAlignment:  MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Row(
-                        children: [
-                          Text(
-                            //SubhanaAllah
-                            'SubhanaAllah',
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 12),
-                            textAlign: TextAlign.center,
-                          ),
-                          SizedBox(width: 10,),
-                          Text(
-                            subhanaAllah.toString(),
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 12),
-                            textAlign: TextAlign.center,
-                          ),
-                        ],
-                      ),
-                      //Alhamdulillah
-                      Row(
-                        children: [
-                          Text( 'Alhadulillah'
-                            ,
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 12),
-                            textAlign: TextAlign.center,
-                          ),
-                          SizedBox(width: 10,),
-                          Text(
-                            alhamdulillah.toString(),
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 12),
-                            textAlign: TextAlign.center,
-                          ),
-                        ],
-                      ),
-                      //La Ilaha Illallah
-                      Row(
-                        children: [
-                          Text(
-                            'La Ilaha Illallah',
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 12),
-                            textAlign: TextAlign.center,
-                          ),
-                          SizedBox(width: 10,),
-                          Text(
-                            laIlahaIllallah.toString(),
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 12),
-                            textAlign: TextAlign.center,
-                          ),
-                        ],
-                      ),
+          ),
 
-                    ],
-                  ),
-                ),
-                Expanded(
-                  flex: 3,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Row(
-                        children: [
-                          Text(
-                            tasbihName,
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 25),
-                            textAlign: TextAlign.center,
-                          ),
-                          SizedBox(width: 20,),
+          SizedBox(
+            width: double.infinity,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ElevatedButton.icon(
+                  onPressed: () {
+                    tasbihName = "ALHAMDULILLAH";
 
-                          //total Result
-                          Text(
-                            result.toString(),
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 25),
-                            textAlign: TextAlign.center,
-                          ),
-                        ],
-                      ),
-
-                    ],
-                  ),
-                ),
-
-              ],
+                    //count1
+                    setState(() {
+                      count2++;
+                      result = count2;
+                    });
+                    subhanaAllah = count1;
+                    laIlahaIllallah = count3;
+                  },
+                  style: ElevatedButton.styleFrom(
+                      padding: EdgeInsets.all(20),
+                      backgroundColor: Colors.lightBlue),
+                  icon: Icon(Icons.add),
+                  label: Text('ALHAMDULILLAH',
+                    style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color: Colors.white,),)),
             ),
-            padding: EdgeInsets.only(right: 20, top: 10),
+          ),
+       
+          SizedBox(
+            width: double.infinity,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ElevatedButton.icon(
+                  onPressed: () {
+                    tasbihName = "LA-ILAHA-ILLALLAH";
+                    setState(() {
+                      tasbeehCounter(count2: count3++);
+                      result = count3;
+                    });
+                    subhanaAllah = count1;
+                    alhamdulillah = count2;
+                  },
+                  style: ElevatedButton.styleFrom(
+                      padding: EdgeInsets.all(20),
+                      backgroundColor: CupertinoColors.activeGreen),
+                  icon: Icon(Icons.add),
+                  label: Text('LA-ILAHA-ILLALLAH',
+                    style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color: Colors.white,),)),
+            ),
           ),
           SizedBox(
-            height: 20,
+            height: 10,
           ),
-          ElevatedButton.icon(
-              onPressed: () {
-                tasbihName = "SubhanaAllah";
-
-                setState(() {
-                 count1++;
-                  result=count1;
-
-                });
-                alhamdulillah=count2;
-                laIlahaIllallah=count3;
-
-
-              },
-              style: ElevatedButton.styleFrom(padding: EdgeInsets.all(30),backgroundColor: Colors.orange),
-              icon: Icon(Icons.add),
-              label: Text('SubhanaAllah')),
           SizedBox(
-            height: 20,
+            width: double.infinity,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ElevatedButton.icon(
+                  onPressed: () {
+                    tasbihName = 'Tasbeeh Counter';
+                    setState(() {
+                      count1 = 0;
+                      count2 = 0;
+                      count3 = 0;
+                      subhanaAllah = 0;
+                      alhamdulillah = 0;
+                      laIlahaIllallah = 0;
+                      result = 0;
+                    });
+                  },
+                  style: ElevatedButton.styleFrom(
+                      padding: EdgeInsets.all(20),
+                      backgroundColor: Colors.redAccent),
+                  icon: Icon(Icons.restart_alt),
+                  label: Text('Reset Counter',
+                    style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color: Colors.white,),)),
+            ),
           ),
-          ElevatedButton.icon(
-              onPressed: () {
-                tasbihName = "Alhamdulillah";
-
-                //count1
-                setState(() {
-                 count2++;
-                  result=count2;
-
-                });
-                subhanaAllah=count1;
-                laIlahaIllallah=count3;
-
-              },
-              style: ElevatedButton.styleFrom(padding: EdgeInsets.all(30),backgroundColor: Colors.lightBlue),
-              icon: Icon(Icons.add),
-              label: Text('Alhamdulillah')),
-          SizedBox(
-            height: 20,
-          ),
-          ElevatedButton.icon(
-              onPressed: () {
-                tasbihName = "La Ilaha Illah";
-                setState(() {
-                  tasbeehCounter(count2:count3++);
-                  result=count3;
-
-                });
-                subhanaAllah=count1;
-                alhamdulillah=count2;
-
-              },
-              style: ElevatedButton.styleFrom(padding: EdgeInsets.all(30),backgroundColor: CupertinoColors.activeGreen),
-              icon: Icon(Icons.add),
-              label: Text('La Ilaha Illallah')),
-          SizedBox(
-            height: 20,
-          ),
-          ElevatedButton.icon(
-              onPressed: () {
-                tasbihName = 'Tasbeeh Counter';
-            setState(() {
-              count1=0;
-              count2=0;
-              count3=0;
-              subhanaAllah=0;
-              alhamdulillah=0;
-              laIlahaIllallah=0;
-              result=0;
-            });
-
-
-
-              },
-              style: ElevatedButton.styleFrom(padding: EdgeInsets.all(30),backgroundColor: Colors.redAccent),
-              icon: Icon(Icons.restart_alt),
-              label: Text('Reset Counter')),
         ],
       ),
     );
